@@ -16,6 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
+"""
+###
+### superuser: admin admin@test.pl haslohaslo
+###
+### user1: testUser test@test.pl haslohaslo
+"""
+
+
 urlpatterns = [
     path('osoby/', include('osoby.urls')),
     path('admin/', admin.site.urls),
