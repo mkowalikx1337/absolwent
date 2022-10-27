@@ -15,17 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-
-"""
-###
-### superuser: admin admin@test.pl haslohaslo
-###
-### user1: testUser test@test.pl haslohaslo
-"""
-
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path('wiadomosci/', include('wiadomosci.urls')),
     path('osoby/', include('osoby.urls')),
     path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    path('', RedirectView.as_view(url='/wiadomosci/', permanent=True)),
 ]

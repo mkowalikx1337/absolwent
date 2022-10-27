@@ -1,0 +1,23 @@
+{% extends 'szablon.html' %}
+
+{% block tytul %}Absolwent – Logowanie{% endblock %}
+
+{% block h1 %}Absolwent – Logowanie{% endblock %}
+
+{% block tresc %}
+
+    <div class="w-100 bg-primary rounded p-4">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-secondary">Wyślij</button>
+
+        </form>
+
+    </div>
+
+{% endblock %}

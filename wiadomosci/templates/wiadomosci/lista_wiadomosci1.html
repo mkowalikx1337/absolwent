@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista wiadomości</title>
+</head>
+<body>
+    <h1>Aktualności</h1>
+    <ol>
+    {% for w in wiadomosci %}
+        <li>{{ w.tresc }}<br><span>Dodano: {{ w.data_d }}</span></li>
+    {% endfor %}
+    </ol>
+</body>
+</html>
