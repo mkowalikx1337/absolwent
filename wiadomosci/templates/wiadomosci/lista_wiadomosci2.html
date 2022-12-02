@@ -1,34 +1,26 @@
 {% extends 'szablon.html' %}
 
-
 {% block tresc %}
-
-    <div class="w-100 bg-primary rounded p-4">
-
+    <div class="w-100 bg-faded rounded p-4">
         <h2 class="section-heading mb-4">
-
             <span class="section-heading-upper">Przeczytaj</span>
-
             <span class="section-heading-lower">Aktualności</span>
-
         </h2>
-
         <ul>
-
         {% for w in wiadomosci %}
-
         <li class="mb-5">
-
-            <span class="lead">{{ w.tresc }}</span><br>
-
+            <span class="lead">{{ w.tresc }}</span>
+            {% if w.autor == user %}
+                <a href="{% url 'wiadomosci:edytuj' w.id %}" class="btn btn-secondary btn-sm">Edytuj</a>&nbsp;
+                <a href="{% url 'wiadomosci:usun' w.id %}" class="btn btn-secondary btn-sm">Usuń</a>
+            {% endif %}
+            <br>
             <span class="float-right">Dodano: {{ w.data_d }}</span>
-
         </li>
-
         {% endfor %}
-
+        {% if user.is_authenticated and perms.wiadomosci.add_wiadomosc %}
+            <a href="{% url 'wiadomosci:dodaj' %}" class="btn btn-secondary">Dodaj wiadomość »»»</a>
+        {% endif %}
         </ul>
-
     </div>
-
 {% endblock %}

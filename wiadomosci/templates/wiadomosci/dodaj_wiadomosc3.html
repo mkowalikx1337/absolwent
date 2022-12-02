@@ -2,19 +2,29 @@
 {% block tytul %}Absolwent – Dodawanie wiadomości{% endblock %}
 {% block h1 %}Absolwent – Dodawanie wiadomości{% endblock %}
 {% block tresc %}
-<div class="w-100 bg-primary rounded p-4">
-    {% if user.is_authenticated %}
-        {% if perms.wiadomosci.add_wiadomosc %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Wyślij</button>
-        </form>
+    <div class="w-100 bg-primary rounded p-4">
+        {% if user.is_authenticated %}
+            {% if perms.wiadomosci.add_wiadomosc %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-secondary">Wyślij</button>
+            </form>
+            {% else %}
+                <div class="well">Nie możesz dodawać wiadomości!</div>
+            {% endif %}
+            <div class="card mt-3">
+                <h4 class="pl-3 pt-3">Moje wiadomości</h4>
+                <div class="card-body py-1">
+                <ul>
+                {% for w in wiadomosci %}
+                    <li>{{ w.tresc }} ({{ w.data_d }})</li>
+                {% endfor %}
+                </ul>
+                </div>
+            </div>
         {% else %}
-        <div class="well">Nie możesz dodawać wiadomości!</div>
+            <div class="well">Nie jesteś zalogowany!</div>
         {% endif %}
-    <div class="well">Nie jesteś zalogowany!</div>
-    {% endif %}
-</div>
+    </div>
 {% endblock %}
-
